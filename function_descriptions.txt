@@ -1,0 +1,66 @@
+Popis funkcí a úkolů projektu substituční šifry
+
+1) Implementace šifrovací/dešifrovací funkčnosti
+
+Funkce v souboru src/substitution_cipher.py:
+
+- validate_key(key)
+  - ověřuje, že klíč je platná permutace abecedy ABCDEFGHIJKLMNOPQRSTUVWXYZ_.
+  - kontroluje délku klíče, unikátnost znaků a přesnou shodu s definovanou abecedou.
+
+- substitute_encrypt(plaintext, key)
+  - šifruje zadaný text pomocí substitučního klíče.
+  - každý znak z abecedy je nahrazen odpovídajícím znakem z klíče.
+  - znaky, které nejsou v abecedě, zůstávají beze změny.
+
+- substitute_decrypt(ciphertext, key)
+  - dešifruje text zašifrovaný substitučním klíčem.
+  - použitím obráceného mapování klíče obnoví původní text.
+  - znaky mimo abecedu zůstávají beze změny.
+
+Podpůrné funkce přidané v druhém kroku:
+
+- normalize_text(text, keep_non_alphabet=False)
+  - převede text na velká písmena.
+  - odstraní diakritiku.
+  - mezery převádí na podtržítko _.
+  - mimo-alfabetní znaky odstraní, nebo je ponechá podle parametru.
+
+- get_bigrams(text)
+  - vytvoří seznam všech dvojic po sobě jdoucích znaků (bigramů).
+
+- transition_matrix(bigrams, alphabet, relative=False)
+  - počítá četnosti výskytu bigramů podle zadané abecedy.
+  - přidává 1 ke všem položkám, aby se zabránilo hodnotě 0.
+  - pokud relatní=True, vrací normalizovanou matici, jejíž součet je 1.
+
+2) Prolomení šifry (kryptoanalýza)
+
+Cíl druhého úkolu:
+
+- analyzovat zašifrovaný text a pokusit se najít správný klíč bez znalosti původního textu.
+- použít statistické vlastnosti jazyka, např. četnost znaků, bigramy nebo trigramy.
+- sestavit přechodovou matici pro bigramy a porovnat ji s očekávanými hodnotami z běžného jazyka.
+- využít metody jako hill climbing nebo Metropolis-Hastings pro hledání nejlepšího klíče.
+
+Přehled funkcí pro kryptoanalýzu (budou implementovány později):
+
+- frequency_analysis(ciphertext)
+  - spočítá četnosti jednotlivých znaků v šifrovaném textu.
+
+- score_key(key, model)
+  - vyhodnotí kvalitu klíče podle shody s jazykovým modelem.
+
+- generate_candidate_keys(base_key)
+  - vytvoří nové kandidátní klíče pomocí malých změn (např. výměna dvou znaků).
+
+- hill_climb(ciphertext, initial_key, model)
+  - iterativně hledá lepší klíč podle skóre a postupně zlepšuje výsledky.
+
+- metropolis_hastings(ciphertext, initial_key, model)
+  - prohledává prostor klíčů s pravděpodobnostním přijetím horších kandidátů.
+
+- build_bigram_model(text)
+  - vytvoří model pravděpodobností nebo četností bigramů z trénovacího textu.
+
+Tyto funkce budou v dalším kroku navazovat na již vytvořenou knihovnu šifrování a dešifrování.
