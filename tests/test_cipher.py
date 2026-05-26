@@ -1,17 +1,12 @@
-import os
-import sys
+import numpy as np
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-
-from src.substitution_cipher import (
+from sifry import (
     get_bigrams,
     normalize_text,
     substitute_decrypt,
     substitute_encrypt,
     transition_matrix,
 )
-
-import numpy as np
 
 VALID_KEY = "DEFGHIJKLMNOPQRSTUVWXYZ_ABC"
 
