@@ -5,11 +5,25 @@ pomocí Metropolis-Hastings algoritmu nad bigramovou maticí češtiny.
 
 ## Instalace
 
+### Make venv, activate
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+### Install dependencies
 ```bash
 pip install -e .             # vývojový (editable) install
 pip install -e .[dev]        # + pytest, pytest-cov
 pip install -e .[notebook]   # + jupyter, matplotlib, nbconvert
 ```
+
+### Run jupyter server
+
+```bash
+jupyter notebook
+```
+
 
 ## Spuštění testů
 
