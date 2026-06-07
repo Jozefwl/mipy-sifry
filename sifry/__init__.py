@@ -8,6 +8,8 @@ Veřejné API:
     load_reference_text, build_reference_matrix, export_decryption
 """
 
+from importlib.metadata import PackageNotFoundError, version
+
 from .cipher import (
     ALPHABET,
     get_bigrams,
@@ -44,4 +46,7 @@ __all__ = [
     "validate_key",
 ]
 
-__version__ = "0.2.0"
+try:
+    __version__ = version("sifry")
+except PackageNotFoundError:
+    __version__ = "0.0.0+unknown"
